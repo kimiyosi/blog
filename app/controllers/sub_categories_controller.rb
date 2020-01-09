@@ -1,4 +1,5 @@
 class SubCategoriesController < ApplicationController
+  before_action :set_title
   before_action :set_sub_category, only: [:show, :edit, :update, :destroy]
 
   # GET /sub_categories
@@ -28,7 +29,7 @@ class SubCategoriesController < ApplicationController
 
     respond_to do |format|
       if @sub_category.save
-        format.html { redirect_to @sub_category, notice: 'Sub category was successfully created.' }
+        format.html { redirect_to admin_sub_categories_path, notice: 'Sub category was successfully created.' }
         format.json { render :show, status: :created, location: @sub_category }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class SubCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @sub_category.update(sub_category_params)
-        format.html { redirect_to @sub_category, notice: 'Sub category was successfully updated.' }
+        format.html { redirect_to admin_sub_categories_path, notice: 'Sub category was successfully updated.' }
         format.json { render :show, status: :ok, location: @sub_category }
       else
         format.html { render :edit }
@@ -56,12 +57,16 @@ class SubCategoriesController < ApplicationController
   def destroy
     @sub_category.destroy
     respond_to do |format|
-      format.html { redirect_to sub_categories_url, notice: 'Sub category was successfully destroyed.' }
+      format.html { redirect_to admin_sub_categories_path, notice: 'Sub category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_title
+      @title = "Sub Category"
+    end  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_sub_category
       @sub_category = SubCategory.find(params[:id])
@@ -69,6 +74,6 @@ class SubCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sub_category_params
-      params.require(:sub_category).permit(:code)
+      params.require(:sub_category).permit!
     end
 end

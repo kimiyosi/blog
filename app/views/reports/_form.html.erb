@@ -1,22 +1,59 @@
-<%= form_with(model: report, local: true) do |form| %>
-  <% if report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+<%= form.hidden_field :code, value: Report.new_code  %>
 
-      <ul>
-        <% report.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="uk-margin">
+  <%= form.label :category_code %>
+  <%= form.select :category_code, options_from_collection_for_select(Category.order(code: :asc), :code, :name), {}, {data: {remote: true, url: url_for(ajax_get_sub_categories_path)}, class: "uk-select" } %>
+  <%= full_error_message_on(:report, :category_code) %>
+</div>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.number_field :code %>
+<div class="uk-margin">
+  <%= form.label :sub_category_code %>
+  <%= form.select(:sub_category_code, 
+    options_from_collection_for_select(SubCategory.order(code: :asc), :code, :name,), 
+    {}, 
+    {id: "sub_category_code", class: "uk-select"}) %>
+  <%= full_error_message_on(:report, :sub_category_code) %>
+</div>
+
+<div class="uk-position-relative" uk-slideshow="animation: fade">
+  <%= form.label :image_code %>
+<% @images = Image.order(code: "asc") -%>
+  <div class="uk-position-relative uk-visible-toggle uk-light uk-position-bottom-center uk-position-small" tabindex="-1" uk-slider>
+    <ul class="uk-slider-items uk-child-width-1-4 uk-child-width-1-6@s uk-child-width-1-8@m">
+      <% @images.each_with_index do |image, i| -%>
+      <li><label><%= form.radio_button(:image_code, image.code, {class: "uk-radio"}) %> <%= image_tag show_image_path(image.code), {height: "100"}  %></label></li>
+      <% end -%>
+    </ul>
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
   </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<div class="uk-margin">
+  <%= form.label :title %>
+  <%= form.text_field(:title, {class: "uk-input",  placeholder: "title"}) %>
+  <%= full_error_message_on(:report, :title) %>
+</div>
+
+<div class="uk-margin">
+  <%= form.label :description %>
+  <%= form.text_field(:description, {class: "uk-input",  placeholder: "description"}) %>
+  <%= full_error_message_on(:report, :description) %>
+</div>
+
+<div class="uk-margin">
+  <%= form.label :info %>
+  <%= form.text_area(:info, {class: "uk-textarea",  rows: 10, placeholder: "info"}) %>
+  <%= full_error_message_on(:report, :info) %>
+</div>
+
+<div class="uk-margin">
+  <%= form.label :is_hide %>
+  <label><%= form.radio_button(:is_hide, false, {class: "uk-radio"}) %> Show</label>
+  <label><%= form.radio_button(:is_hide, true, {class: "uk-radio"}) %> Hide</label>
+  <%= full_error_message_on(:report, :is_hide) %>
+</div>
+
+<div class="uk-margin uk-text-center">
+  <%= form.submit "Create", {class: "uk-button uk-button-primary"} %>
+</div>

@@ -1,9 +1,33 @@
+<ul class="uk-breadcrumb">
+  <li><%= link_to "List", admin_categories_path %></li>
+  <li>Show</li>
+</ul>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Code:</strong>
-  <%= @category.code %>
-</p>
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li><%= link_to 'Edit', edit_admin_category_path(@category) %></li>
+    </ul>
+  </div>
+</nav>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<table class="uk-table uk-table-divider">
+  <tr>
+    <th>Code</th>
+    <td><%= @category.code %></td>
+  </tr>
+  <tr>
+    <th>Order Code</th>
+    <td><%= @category.order_code %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @category.name %></td>
+  </tr>
+  <tr>
+    <th>En Name</th>
+    <td><%= @category.en_name %></td>
+  </tr>
+</table>

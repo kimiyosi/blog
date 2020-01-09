@@ -1,6 +1,10 @@
-<h1>Editing Sub Category</h1>
+<ul class="uk-breadcrumb">
+  <li><%= link_to "List", admin_sub_categories_path %></li>
+  <li>Edit</li>
+</ul>
 
-<%= render 'form', sub_category: @sub_category %>
-
-<%= link_to 'Show', @sub_category %> |
-<%= link_to 'Back', sub_categories_path %>
+<div class="uk-card uk-card-default uk-card-body">
+  <%= form_with(model: @sub_category, url: admin_sub_category_path(@sub_category), local: true) do |form| %>
+    <%= render partial: "form", locals: {form: form} %>
+  <% end %>
+</div>

@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin <%= @title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://getuikit.com/assets/uikit/dist/js/uikit.min.js?1219" defer></script>
+    <script src="https://getuikit.com/assets/uikit/dist/js/uikit-icons.min.js?1219" defer></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="uk-section-xsmall uk-section-default uk-box-shadow-small" uk-sticky="show-on-up: true; animation: uk-aimation-slide-top;">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+          <div class="uk-navbar-left"><a href="#offcanvas-nav" uk-icon="icon: menu" uk-toggle></a></div>
+          <div class="uk-navbar-center">Admin <%= @title %></div>
+        </nav>
+      </div>
+    </div>
+
+    <main class="uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom">
+      <%= yield -%>
+    </main>
+
+    <div id="offcanvas-nav" uk-offcanvas="overlay: true">
+      <div class="uk-offcanvas-bar">
+        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <li class="uk-nav-header">Admin</li>
+          <li><a href="<%= url_for admin_categories_path %>"><span class="uk-margin-small-right" uk-icon="icon: user"></span> Category</a></li>
+          <li><a href="<%= url_for admin_sub_categories_path %>"><span class="uk-margin-small-right" uk-icon="icon: users"></span> Sub Category</a></li>
+          <li><a href="<%= url_for admin_reports_path %>"><span class="uk-margin-small-right" uk-icon="icon: file-edit"></span> Report</a></li>
+          <li><a href="<%= url_for admin_images_path %>"><span class="uk-margin-small-right" uk-icon="icon: image"></span> Image</a></li>
+        </ul>
+      </div>
+    </div>
+
   </body>
 </html>

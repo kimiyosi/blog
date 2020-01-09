@@ -1,22 +1,23 @@
-<%= form_with(model: category, local: true) do |form| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<%= form.hidden_field :code, value: Category.new_code  %>
 
-      <ul>
-        <% category.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="uk-margin">
+  <%= form.label :order_code %>
+  <%= form.number_field :order_code, {class: "uk-input blue_border",  placeholder: "order_code"} %>
+  <%= full_error_message_on(:category, :order_code) %>
+</div>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.number_field :code %>
-  </div>
+<div class="uk-margin">
+  <%= form.label :name %>
+  <%= form.text_field :name, {class: "uk-input black_border",  placeholder: "name"} %>
+  <%= full_error_message_on(:category, :name) %>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<div class="uk-margin">
+  <%= form.label :en_name %>
+  <%= form.text_field :en_name, {class: "uk-input black_border",  placeholder: "en_name"} %>
+  <%= full_error_message_on(:category, :en_name) %>
+</div>
+
+<div class="uk-margin uk-text-center">
+  <%= form.submit "Create", {class: "uk-button uk-button-primary"} %>
+</div>

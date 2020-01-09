@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_action :set_title
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /images
@@ -24,11 +25,14 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(image_params)
+    @image = Image.new()
+    @image.code = params[:image][:code]
+    @image.name = params[:image][:img_file].original_filename
+    @image.img = params[:image][:img_file].read
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to admin_images_path, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to admin_images_path, notice: 'Image was successfully updated.' }
         format.json { render :show, status: :ok, location: @image }
       else
         format.html { render :edit }
@@ -56,12 +60,16 @@ class ImagesController < ApplicationController
   def destroy
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
+      format.html { redirect_to admin_images_path, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_title
+      @title = "Image"
+    end  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_image
       @image = Image.find(params[:id])
@@ -69,6 +77,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:code)
+      params.require(:image).permit!
     end
 end

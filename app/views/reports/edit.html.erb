@@ -1,6 +1,18 @@
-<h1>Editing Report</h1>
+<ul class="uk-breadcrumb">
+  <li><%= link_to "List", admin_reports_path %></li>
+  <li>Edit</li>
+</ul>
 
-<%= render 'form', report: @report %>
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li><%= link_to 'Destroy', admin_report_path(@report), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+  </div>
+</nav>
 
-<%= link_to 'Show', @report %> |
-<%= link_to 'Back', reports_path %>
+<div class="uk-card uk-card-default uk-card-body">
+  <%= form_with(model: @report, url: admin_report_path(@report), local: true) do |form| %>
+    <%= render partial: "form", locals: {form: form} %>
+  <% end %>
+</div>

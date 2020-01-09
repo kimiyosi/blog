@@ -1,11 +1,24 @@
+<ul class="uk-breadcrumb">
+  <li>List</li>
+</ul>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Sub Categories</h1>
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li><%= link_to 'New Sub Category', new_admin_sub_category_path %></li>
+    </ul>
+  </div>
+</nav>
 
-<table>
+<table class="uk-table uk-table-striped uk-margin">
   <thead>
     <tr>
       <th>Code</th>
+      <th>Category</th>
+      <th>Name</th>
+      <th>En Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,14 +27,13 @@
     <% @sub_categories.each do |sub_category| %>
       <tr>
         <td><%= sub_category.code %></td>
-        <td><%= link_to 'Show', sub_category %></td>
-        <td><%= link_to 'Edit', edit_sub_category_path(sub_category) %></td>
-        <td><%= link_to 'Destroy', sub_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= sub_category.category.name %></td>
+        <td><%= sub_category.name %></td>
+        <td><%= sub_category.en_name %></td>
+        <td><%= link_to 'Show', admin_sub_category_path(sub_category) %></td>
+        <td><%= link_to 'Edit', edit_admin_sub_category_path(sub_category) %></td>
+        <td><%= link_to 'Destroy', admin_sub_category_path(sub_category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Sub Category', new_sub_category_path %>

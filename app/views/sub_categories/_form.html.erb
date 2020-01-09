@@ -1,22 +1,30 @@
-<%= form_with(model: sub_category, local: true) do |form| %>
-  <% if sub_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(sub_category.errors.count, "error") %> prohibited this sub_category from being saved:</h2>
+<%= form.hidden_field :code, value: SubCategory.new_code  %>
 
-      <ul>
-        <% sub_category.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="uk-margin">
+  <%= form.label :category_code %>
+  <%= form.collection_select :category_code, Category.order(code: :asc), :code, :name, {}, {class: "uk-select"} %>
+  <%= full_error_message_on(:sub_category, :category_code) %>
+</div>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.number_field :code %>
-  </div>
+<div class="uk-margin">
+  <%= form.label :name %>
+  <%= form.text_field :name, {class: "uk-input black_border",  placeholder: "name"} %>
+  <%= full_error_message_on(:sub_category, :name) %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+
+<div class="uk-margin">
+  <%= form.label :en_name %>
+  <%= form.text_field :en_name, {class: "uk-input black_border",  placeholder: "en_name"} %>
+  <%= full_error_message_on(:sub_category, :en_name) %>
+</div>
+
+<div class="uk-margin">
+  <%= form.label :order_code %>
+  <%= form.text_field(:order_code, {class: "uk-input black_border",  placeholder: "order_code"}) %>
+  <%= full_error_message_on(:sub_category, :order_code) %>
+</div>
+
+<div class="uk-margin uk-text-center">
+  <%= form.submit "Create", {class: "uk-button uk-button-primary"} %>
+</div>

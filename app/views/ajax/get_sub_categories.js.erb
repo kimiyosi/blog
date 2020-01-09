@@ -1,0 +1,3 @@
+$('#sub_category_code').html(
+  "<%= j(select :report, :sub_category_code, options_from_collection_for_select(@sub_categories, :code, :name)) %>"
+);

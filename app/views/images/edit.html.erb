@@ -1,6 +1,10 @@
-<h1>Editing Image</h1>
+<ul class="uk-breadcrumb">
+  <li><%= link_to "List", admin_images_path %></li>
+  <li>Edit</li>
+</ul>
 
-<%= render 'form', image: @image %>
-
-<%= link_to 'Show', @image %> |
-<%= link_to 'Back', images_path %>
+<div class="uk-card uk-card-default uk-card-body">
+  <%= form_with(model: @image, url: admin_image_path(@image), local: true) do |form| %>
+    <%= render partial: "form", locals: {form: form} %>
+  <% end %>
+</div>

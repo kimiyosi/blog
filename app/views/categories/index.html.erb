@@ -1,11 +1,23 @@
+<ul class="uk-breadcrumb">
+  <li>List</li>
+</ul>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li><%= link_to 'New Category', new_admin_category_path %></li>
+    </ul>
+  </div>
+</nav>
 
-<table>
+<table class="uk-table uk-table-striped uk-margin">
   <thead>
     <tr>
       <th>Code</th>
+      <th>Name</th>
+      <th>En Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,14 +26,12 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.code %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= category.name %></td>
+        <td><%= category.en_name %></td>
+        <td><%= link_to 'Show', admin_category_path(category) %></td>
+        <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
+        <td><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>

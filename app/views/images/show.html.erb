@@ -1,9 +1,29 @@
+<ul class="uk-breadcrumb">
+  <li><%= link_to "List", admin_images_path %></li>
+  <li>Show</li>
+</ul>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Code:</strong>
-  <%= @image.code %>
-</p>
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li><%= link_to 'Destroy', admin_image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+  </div>
+</nav>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>
+<table class="uk-table uk-table-divider">
+  <tr>
+    <th>Code</th>
+    <td><%= @image.code %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @image.name %></td>
+  </tr>
+  <tr>
+    <th>Image</th>
+    <td><%= image_tag(show_image_path(@image.code), {width: "400"}) %></td>
+  </tr>
+</table>
