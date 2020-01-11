@@ -5,6 +5,7 @@ class Category < ApplicationRecord
   validates :en_name, presence: true
 
   has_many :sub_categories, foreign_key: "category_code", primary_key: "code"
+  has_many :reports, foreign_key: "category_code", primary_key: "code"
 
   def self.new_code
     code = 1

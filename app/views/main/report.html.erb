@@ -1,0 +1,33 @@
+<ul class="uk-breadcrumb">
+  <li><%= link_to "Home", main_index_path %></li>
+  <li><%= link_to @category.name, main_category_path(category_name: @category.en_name) %></li>
+  <li><%= link_to @sub_category.name, main_sub_category_path(category_name: @category.en_name, sub_category_name: @sub_category.en_name) %></li>
+  <li><span><%= @report.title %></span></li>
+</ul>
+
+<div class="uk-grid uk-text-center uk-margin" uk-grid>
+  <div class="uk-width-3-4@m">
+    <article class="uk-card uk-card-default uk-margin article_contents">
+      <header class="uk-card-body">
+        <h1 class="uk-article-title blue"><%= @report.title %></h1>
+        <hr />
+        <p class="uk-article-meta"><time datetime="<%= @report.created_at.strftime("%Y-%m-%d") %>"><%= @report.created_at.strftime("%Y-%m-%d") %></time> <span class="uk-label green_bg"><%= link_to @report.category.name, main_category_path(category_name: @report.category.en_name), {class: "white"} %></span> <span class="uk-label light_green_bg"><%= link_to @report.sub_category.name, main_sub_category_path(category_name: @report.category.en_name, sub_category_name: @report.sub_category.en_name), {class: "white"} %></span></p>
+        <h2 class="uk-text-lead"><%= @report.description %></h2>
+      </header>
+      <section class="uk-card-media-bottom">
+        <%= image_tag show_image_path(@report.image_code), {alt: @report.title} %>
+      </section>
+      <section class="uk-card-body">
+        <%= @report.info.html_safe %> 
+      </section>
+      <footer class="uk-card-body">
+      </footer>
+    </article>
+  </div>
+  
+  <div class="uk-width-1-4@m list">
+    <% @sub_category.reports.each do |report| -%>
+      <%= grid_contents(report) %>
+    <% end -%>
+  </div>
+</div>

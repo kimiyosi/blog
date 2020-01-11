@@ -1,4 +1,8 @@
-<%= form.hidden_field :code, value: Report.new_code  %>
+<% if @report.code %>
+  <%= form.hidden_field :code, value: @report.code  %>
+<% else %>
+  <%= form.hidden_field :code, value: Report.new_code  %>
+<% end %>
 
 <div class="uk-margin">
   <%= form.label :category_code %>
@@ -17,7 +21,7 @@
 
 <div class="uk-position-relative" uk-slideshow="animation: fade">
   <%= form.label :image_code %>
-<% @images = Image.order(code: "asc") -%>
+  <% @images = Image.order(code: "asc") -%>
   <div class="uk-position-relative uk-visible-toggle uk-light uk-position-bottom-center uk-position-small" tabindex="-1" uk-slider>
     <ul class="uk-slider-items uk-child-width-1-4 uk-child-width-1-6@s uk-child-width-1-8@m">
       <% @images.each_with_index do |image, i| -%>
@@ -43,7 +47,7 @@
 
 <div class="uk-margin">
   <%= form.label :info %>
-  <%= form.text_area(:info, {class: "uk-textarea",  rows: 10, placeholder: "info"}) %>
+  <%= form.text_area(:info, {class: "uk-textarea",  rows: 20, placeholder: "info"}) %>
   <%= full_error_message_on(:report, :info) %>
 </div>
 

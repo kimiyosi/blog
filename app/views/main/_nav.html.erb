@@ -1,0 +1,17 @@
+<div id="offcanvas-nav" uk-offcanvas="overlay: true">
+  <div class="uk-offcanvas-bar">
+    <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+      <li class="uk-nav-header">Menu</li>
+      <li><a href="<%= url_for main_index_path %>"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Home</a></li>
+      <li class="uk-nav-header">Category</li>
+      <% @categories.each do |category| %>
+        <li><a href="<%= url_for main_category_path(category_name: category.en_name) %>"><span class="uk-margin-small-right" uk-icon="icon: play"></span> <%= category.name %></a></li>
+        <ul class="uk-nav-sub">
+        <% category.sub_categories.each do |sub_category| %>
+          <li><a href="<%= url_for main_sub_category_path(category_name: category.en_name, sub_category_name: sub_category.en_name) %>"><span class="uk-margin-small-right" uk-icon="icon: triangle-right"></span> <%= sub_category.name %></a></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </ul>
+  </div>
+</div>

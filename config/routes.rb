@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   get ':category_name/:sub_category_name', to: "main#sub_category", as: "main_sub_category"
   get ':category_name/:sub_category_name/:code', to: "main#report", as: "main_report"
 
-  match '*path(.:format)', to: 'main#page_not_found', via: :all
+  match '*path(.:format)', to: 'main#page_not_found', as: "page_not_found", via: :all
 end
