@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :auth
   before_action :set_title
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 

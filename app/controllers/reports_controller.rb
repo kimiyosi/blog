@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :auth
   before_action :set_title
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
