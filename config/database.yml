@@ -20,7 +20,7 @@ production:
   <<: *default
   database: blog_live
   pool: 5
-  username: yoshikimi
-  password: yoshikimi100
-  host: localhost
+  username: devuser
+  password: devuser100
+  host: kimiyosi-db.clwtnwxrhpbf.us-east-2.rds.amazonaws.com
   port: 5432
