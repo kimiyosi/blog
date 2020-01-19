@@ -19,16 +19,19 @@
 
   <body>
     <header>
-      <%= render partial: "header" -%>
+      <%= render partial: "header" %>
     </header>
     <main class="uk-container uk-margin">
       <%= yield %>
     </main>
     <footer>
-      <%= render partial: "footer" -%>
+      <%= render partial: "footer" %>
     </footer>
     <nav>
-      <%= render partial: "nav" -%>
+      <%= render partial: "nav" %>
     </nav>
+
+    <%= render partial: "google_ analytics" %>
+    
   </body>
 </html>
