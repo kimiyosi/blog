@@ -1,0 +1,12 @@
+<ul class="uk-breadcrumb">
+  <li><%= link_to "Home", main_index_path %></li>
+  <li><span><%= @tag.name %></span></li>
+</ul>
+
+<div class="uk-grid-match uk-grid uk-text-center uk-margin list" uk-grid>
+  <% @tag.reports.each do |tag| -%>
+  <div class="uk-width-1-3@m">
+    <%= grid_contents(tag) %>
+  </div>
+  <% end -%>
+</div>

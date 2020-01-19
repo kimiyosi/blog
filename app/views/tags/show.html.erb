@@ -1,0 +1,25 @@
+<ul class="uk-breadcrumb">
+  <li><%= link_to "List", admin_tags_path %></li>
+  <li>Show</li>
+</ul>
+
+<p id="notice"><%= notice %></p>
+
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li><%= link_to 'Edit', edit_admin_tag_path(@tag) %></li>
+    </ul>
+  </div>
+</nav>
+
+<table class="uk-table uk-table-divider">
+  <tr>
+    <th>Code</th>
+    <td><%= @tag.code %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @tag.name %></td>
+  </tr>
+</table>

@@ -21,6 +21,9 @@
         <%= @report.info.html_safe %> 
       </section>
       <footer class="uk-card-body">
+        <% @report.tags.each do |tag| %>
+          <span class="uk-label blue_bg"><%= link_to tag.name, main_tag_path(tag_name: tag.name), {class: "white"} %></span> 
+        <% end%>
       </footer>
     </article>
   </div>

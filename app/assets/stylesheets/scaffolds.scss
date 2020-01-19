@@ -12,4 +12,10 @@ pre {
   list-style: square; }
 
 label {
-  display: block; }
+  display: block; 
+}
+
+.check_box label {
+  display: inline; 
+  padding-right: 10px;
+}

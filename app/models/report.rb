@@ -9,6 +9,8 @@ class Report < ApplicationRecord
   belongs_to :category, foreign_key: "category_code", primary_key: "code"
   belongs_to :sub_category, foreign_key: "sub_category_code", primary_key: "code"
   belongs_to :image, foreign_key: "image_code", primary_key: "code"
+  has_many   :report_tags, foreign_key: "report_code", primary_key: "code", dependent: :destroy
+  has_many   :tags, through: :report_tags, foreign_key: "tag_code", primary_key: "code"
 
   def self.new_code
     code = 1

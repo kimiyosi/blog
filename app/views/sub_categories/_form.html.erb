@@ -1,4 +1,8 @@
-<%= form.hidden_field :code, value: SubCategory.new_code  %>
+<% if @sub_category.code %>
+  <%= form.hidden_field :code, value: @sub_category.code  %>
+<% else %>
+  <%= form.hidden_field :code, value: SubCategory.new_code  %>
+<% end %>
 
 <div class="uk-margin">
   <%= form.label :category_code %>

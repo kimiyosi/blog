@@ -1,4 +1,25 @@
+<%
+  @title = "Page Not Found | #{@site_title}"
+  @meta_description = "ページが見つかりません。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。時間が経つと忘れてしまうものを記録していくためのブログです。"
+  @meta_keywords = "#{@site_title}, プログラミング, ノウハウ, IT, ブログ"
+  @reports = Report.order(created_at: :desc)
+%>
+
 <ul class="uk-breadcrumb">
   <li><%= link_to "Home", main_index_path %></li>
   <li><span>Page Not Found</span></li>
 </ul>
+
+<div class="uk-grid uk-text-center uk-margin" uk-grid>
+  <div class="uk-width-3-4@m">
+    <article class="uk-card uk-card-default uk-margin article_contents">
+      <p class="page_not_found">Page Not Found</p>
+    </article>
+  </div>
+  
+  <div class="uk-width-1-4@m list">
+    <% @reports.each do |report| -%>
+      <%= grid_contents(report) %>
+    <% end -%>
+  </div>
+</div>

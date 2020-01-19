@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_01_192303) do
+ActiveRecord::Schema.define(version: 2020_01_18_144328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2020_01_01_192303) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_images_on_code", unique: true
     t.index ["name"], name: "index_images_on_name"
+  end
+
+  create_table "report_tags", force: :cascade do |t|
+    t.integer "tag_code", null: false
+    t.integer "report_code", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_code", "report_code"], name: "index_report_tags_on_tag_code_and_report_code", unique: true
   end
 
   create_table "reports", force: :cascade do |t|
@@ -70,6 +78,15 @@ ActiveRecord::Schema.define(version: 2020_01_01_192303) do
     t.index ["en_name"], name: "index_sub_categories_on_en_name"
     t.index ["name"], name: "index_sub_categories_on_name"
     t.index ["order_code"], name: "index_sub_categories_on_order_code"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "code", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_tags_on_code", unique: true
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
 end

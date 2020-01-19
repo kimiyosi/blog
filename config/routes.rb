@@ -7,9 +7,11 @@ Rails.application.routes.draw do
     resources :categories
     resources :reports
     resources :images
+    resources :tags
   end
 
   get '', to: "main#index", as: "main_index"
+  get 'tag/:tag_name', to: "main#tag", as: "main_tag"
   get ':category_name', to: "main#category", as: "main_category"
   get ':category_name/:sub_category_name', to: "main#sub_category", as: "main_sub_category"
   get ':category_name/:sub_category_name/:code', to: "main#report", as: "main_report"

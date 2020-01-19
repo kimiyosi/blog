@@ -34,8 +34,18 @@
 </div>
 
 <div class="uk-margin">
+  <%= form.label :tag %>
+  <div class="uk-margin check_box">
+  <% Tag.order(created_at: :asc).each do |tag| %>
+    <% is_tag = ReportTag.find_by(report_code: @report.code, tag_code: tag.code) %>
+    <%= form.check_box :tags, {multiple: true, class: "uk-checkbox", checked: is_tag.present?}, tag.code, nil %> <%= form.label "tags_#{tag.code}", tag.name %>
+  <% end %>
+  </div>
+</div>
+
+<div class="uk-margin">
   <%= form.label :title %>
-  <%= form.text_field(:title, {class: "uk-input",  placeholder: "title"}) %>
+  <%= form.text_field(:title, {class: "uk-input", placeholder: "title"}) %>
   <%= full_error_message_on(:report, :title) %>
 </div>
 

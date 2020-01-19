@@ -39,6 +39,18 @@ class MainController < ApplicationController
     @meta_keywords = "#{@sub_category.name}, #{@category.name}, #{@site_title}, プログラミング, ノウハウ, IT, ブログ"
   end
 
+  def tag
+    @tag = Tag.find_by(name: params[:tag_name])
+    unless @tag
+      render template: "main/page_not_found", status: 404, content_type: "text/html"
+      return
+    end
+
+    @title = "#{@tag.name} | #{@site_title}"
+    @meta_description = "#{@tag.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。"
+    @meta_keywords = "#{@tag.name}, #{@site_title}, プログラミング, ノウハウ, IT, ブログ"
+  end
+
   def report
     @category = Category.find_by(en_name: params[:category_name])
     unless @category

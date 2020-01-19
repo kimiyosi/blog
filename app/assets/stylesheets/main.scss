@@ -3,7 +3,7 @@ $blue: #241C58;
 
 a {
   &:hover {
-    color: red !important;
+    color: $red !important;
   }
 }
 
@@ -11,6 +11,11 @@ a {
   &:before {
     border-color: $red !important;
   }
+}
+
+.page_not_found {
+  text-align: center;
+  padding: 200px 0 200px 0;
 }
 
 .list {
@@ -39,6 +44,7 @@ a {
   .uk-label {
     font-size: 0.675rem;
     margin-left: 5px;
+    text-transform: none;
 
     a {
       &:hover {
@@ -60,10 +66,12 @@ a {
   .uk-label {
     font-size: 0.675rem;
     margin-left: 5px;
+    text-transform: none;
 
     a {
       &:hover {
-        color: $blue !important;
+        color: #fff !important;
+        text-decoration: underline;
       }
     }
   }

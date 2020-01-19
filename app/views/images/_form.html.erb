@@ -1,4 +1,8 @@
-<%= form.hidden_field :code, value: Image.new_code  %>
+<% if @image.code %>
+  <%= form.hidden_field :code, value: @image.code  %>
+<% else %>
+  <%= form.hidden_field :code, value: Image.new_code  %>
+<% end %>
 
 <div class="uk-margin">
   <div uk-form-custom>

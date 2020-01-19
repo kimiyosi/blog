@@ -26,10 +26,17 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
+    tag_codes = report_params["tags"]
+    report_params.delete("tags")
     @report = Report.new(report_params)
 
     respond_to do |format|
       if @report.save
+
+        unless tag_codes.blank?
+          ReportTag.add(@report.code, tag_codes)
+        end
+
         format.html { redirect_to admin_reports_path, notice: 'Report was successfully created.' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -42,8 +49,16 @@ class ReportsController < ApplicationController
   # PATCH/PUT /reports/1
   # PATCH/PUT /reports/1.json
   def update
+    tag_codes = report_params["tags"]
+    report_params.delete("tags")
+
     respond_to do |format|
       if @report.update(report_params)
+
+        unless tag_codes.blank?
+          ReportTag.update_report(@report.code, tag_codes)
+        end
+
         format.html { redirect_to admin_reports_path, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else

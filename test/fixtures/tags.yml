@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tag_code: 1
+  report_code: 
+
+two:
+  tag_code: 1
+  report_code: 
