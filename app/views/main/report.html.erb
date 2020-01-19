@@ -2,7 +2,7 @@
   <li><%= link_to "Home", main_index_path %></li>
   <li><%= link_to @category.name, main_category_path(category_name: @category.en_name) %></li>
   <li><%= link_to @sub_category.name, main_sub_category_path(category_name: @category.en_name, sub_category_name: @sub_category.en_name) %></li>
-  <li><span><%= @report.title %></span></li>
+  <li class="hidden_m"><span><%= @report.title %></span></li>
 </ul>
 
 <div class="uk-grid uk-text-center uk-margin" uk-grid>
@@ -28,7 +28,7 @@
     </article>
   </div>
   
-  <div class="uk-width-1-4@m list">
+  <div class="uk-width-1-4@m list uk-text-small article_list">
     <% @sub_category.reports.each do |report| -%>
       <%= grid_contents(report) %>
     <% end -%>
