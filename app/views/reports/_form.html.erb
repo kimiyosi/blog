@@ -1,4 +1,12 @@
+<%
+  category_code = 1
+  sub_category_code = 1
+%>
 <% if @report.code %>
+  <%
+    category_code = @report.category.code
+    sub_category_code = @report.sub_category.code
+  %>
   <%= form.hidden_field :code, value: @report.code  %>
 <% else %>
   <%= form.hidden_field :code, value: Report.new_code  %>
@@ -6,14 +14,14 @@
 
 <div class="uk-margin">
   <%= form.label :category_code %>
-  <%= form.select :category_code, options_from_collection_for_select(Category.order(code: :asc), :code, :name), {}, {data: {remote: true, url: url_for(ajax_get_sub_categories_path)}, class: "uk-select" } %>
+  <%= form.select :category_code, options_from_collection_for_select(Category.order(code: :asc), :code, :name, selected: category_code), {}, {data: {remote: true, url: url_for(ajax_get_sub_categories_path)}, class: "uk-select" } %>
   <%= full_error_message_on(:report, :category_code) %>
 </div>
 
 <div class="uk-margin">
   <%= form.label :sub_category_code %>
   <%= form.select(:sub_category_code, 
-    options_from_collection_for_select(SubCategory.order(code: :asc), :code, :name,), 
+    options_from_collection_for_select(SubCategory.order(code: :asc), :code, :name, selected: sub_category_code), 
     {}, 
     {id: "sub_category_code", class: "uk-select"}) %>
   <%= full_error_message_on(:report, :sub_category_code) %>
