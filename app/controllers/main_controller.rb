@@ -5,7 +5,7 @@ class MainController < ApplicationController
     @reports = Report.order(updated_at: "desc")
 
     @title = "#{@site_title}"
-    @meta_description = "このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。時間が経つと忘れてしまうものを記録していくためのブログです。"
+    @meta_description = "このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。時間が経つと忘れてしまうものを記録していくためのブログです。ゲームの攻略などもまとめていきます。"
     @meta_keywords = "#{@site_title}, プログラミング, ノウハウ, IT, ブログ"
   end
 
@@ -17,7 +17,7 @@ class MainController < ApplicationController
     end
 
     @title = "#{@category.name} | #{@site_title}"
-    @meta_description = "#{@category.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。"
+    @meta_description = "#{@category.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。ゲームの攻略などもまとめていきます。"
     @meta_keywords = "#{@category.name}, #{@site_title}, プログラミング, ノウハウ, IT, ブログ"
   end
 
@@ -35,7 +35,7 @@ class MainController < ApplicationController
     end
 
     @title = "#{@sub_category.name} | #{@site_title}"
-    @meta_description = "#{@sub_category.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。"
+    @meta_description = "#{@sub_category.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。ゲームの攻略などもまとめていきます。"
     @meta_keywords = "#{@sub_category.name}, #{@category.name}, #{@site_title}, プログラミング, ノウハウ, IT, ブログ"
   end
 
@@ -47,7 +47,7 @@ class MainController < ApplicationController
     end
 
     @title = "#{@tag.name} | #{@site_title}"
-    @meta_description = "#{@tag.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。"
+    @meta_description = "#{@tag.name}に関する記事を紹介しています。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。ゲームの攻略などもまとめていきます。"
     @meta_keywords = "#{@tag.name}, #{@site_title}, プログラミング, ノウハウ, IT, ブログ"
   end
 
@@ -77,7 +77,7 @@ class MainController < ApplicationController
 
   def page_not_found
     @title = "Page Not Found | #{@site_title}"
-    @meta_description = "ページが見つかりません。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。時間が経つと忘れてしまうものを記録していくためのブログです。"
+    @meta_description = "ページが見つかりません。このブログは、プログラミング言語の使い方や環境構築のセットアップ、エラーの対処方法などのノウハウの記録を書き留めていきます。時間が経つと忘れてしまうものを記録していくためのブログです。ゲームの攻略などもまとめていきます。"
     @meta_keywords = "#{@site_title}, プログラミング, ノウハウ, IT, ブログ"
   end
 
