@@ -5,6 +5,12 @@
 <% end %>
 
 <div class="uk-margin">
+  <%= form.label :type_code %>
+  <%= form.select :type_code, {'Main': 1, 'Sub': 2}, { include_blank: '-----'}, {class: "uk-select" } %>
+  <%= full_error_message_on(:image, :type_code) %>
+</div>
+
+<div class="uk-margin">
   <div uk-form-custom>
     <%= form.label :img_file %>
     <%= form.file_field(:img_file) %>

@@ -9,8 +9,16 @@
   <div class="uk-width-1-3@m">
     <%= grid_contents(report, card_css: "uk-margin") %>
   <% when 2 %>
-    <%= grid_contents(report) %>
+    <%= render partial: "google_ad_infeed" %>
   </div>
+  <% when 6 %>
+    <div class="uk-width-1-3@m">
+      <%= render partial: "google_ad_infeed" %>
+    </div>
+  <% when 11 %>
+    <div class="uk-width-1-3@m">
+      <%= render partial: "google_ad_infeed" %>
+    </div>
   <% else %>
   <div class="uk-width-1-3@m">
     <%= grid_contents(report) %>

@@ -35,6 +35,11 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # preload_app!
 
 # Allow puma to be restarted by `rails restart` command.
-bind "unix:///home/ec2-user/approot/tmp/sockets/puma.sock"
+if ENV['RAILS_ENV'] == "development"
+  plugin :tmp_restart
+end
+if ENV['RAILS_ENV'] == "production"
+  bind "unix:///home/ec2-user/approot/tmp/sockets/puma.sock"
+end
 #plugin :tmp_restart
 #stdout_redirect "#{Rails.root}/log/puma.stdout.log", "#{Rails.root}/log/puma.stderr.log", true

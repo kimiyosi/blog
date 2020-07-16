@@ -20,6 +20,11 @@
       <section class="uk-card-body">
         <%= @report.info.html_safe %> 
       </section>
+
+      <section class="uk-card-body">
+        <%= render partial: "google_ad_article" %>
+      </section>
+
       <footer class="uk-card-body">
         <% @report.tags.each do |tag| %>
           <span class="uk-label blue_bg"><%= link_to tag.name, main_tag_path(tag_name: tag.name), {class: "white"} %></span> 
@@ -29,8 +34,11 @@
   </div>
   
   <div class="uk-width-1-4@m list uk-text-small article_list">
+    <div class="uk-margin">
+    <%= render partial: "google_ad_height" %>
+    </div>
     <% @sub_category.reports.each do |report| -%>
-      <%= grid_contents(report) %>
+      <%= grid_contents(report, card_css: "uk-margin") %>
     <% end -%>
   </div>
 </div>

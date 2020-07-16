@@ -29,7 +29,7 @@
 
 <div class="uk-position-relative" uk-slideshow="animation: fade">
   <%= form.label :image_code %>
-  <% @images = Image.order(code: "asc") -%>
+  <% @images = Image.where(type_code: 1).order(code: "asc") -%>
   <div class="uk-position-relative uk-visible-toggle uk-light uk-position-bottom-center uk-position-small" tabindex="-1" uk-slider>
     <ul class="uk-slider-items uk-child-width-1-4 uk-child-width-1-6@s uk-child-width-1-8@m">
       <% @images.each_with_index do |image, i| -%>
@@ -63,6 +63,14 @@
   <%= full_error_message_on(:report, :description) %>
 </div>
 
+<div uk-tooltip="Bold" class="uk-button uk-button-default uk-button-small" onclick="addBold();" uk-icon="bold"></div>
+<div uk-tooltip="P" class="uk-button uk-button-default uk-button-small" onclick="addP();" uk-icon="pencil"></div>
+<div uk-tooltip="H3" class="uk-button uk-button-default uk-button-small" onclick="addH3();" uk-icon="tag"></div>
+<div uk-tooltip="Code" class="uk-button uk-button-default uk-button-small" onclick="addCode();" uk-icon="google"></div>
+<div uk-tooltip="Table" class="uk-button uk-button-default uk-button-small" onclick="addTable();" uk-icon="table"></div>
+<div uk-tooltip="Link" class="uk-button uk-button-default uk-button-small" onclick="addA();" uk-icon="link"></div>
+<div uk-tooltip="Image" class="uk-button uk-button-default uk-button-small" onclick="addImage();" uk-icon="image"></div>
+
 <div class="uk-margin">
   <%= form.label :info %>
   <%= form.text_area(:info, {class: "uk-textarea",  rows: 20, placeholder: "info"}) %>
@@ -79,3 +87,71 @@
 <div class="uk-margin uk-text-center">
   <%= form.submit "Create", {class: "uk-button uk-button-primary"} %>
 </div>
+
+<script>
+var area = document.getElementById('report_info');
+
+function addCode()
+{
+  text = "<pre><code>\n\n</code></pre>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addH3()
+{
+  text = "<h3 class=\"uk-heading-bullet\"></h3>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addP()
+{
+  text = "<p></p>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addTable()
+{
+  text = "<table class=\"uk-table uk-table-divider\">\n  <tr>\n    <th></th>\n    <th></th>\n  </tr>\n  <tr>\n    <td></td>\n    <td></td>\n  </tr>\n</table>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addBold()
+{
+  text = " class=\"uk-text-bold\""
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addA()
+{
+  text = "<p><a href=\"\" target=\"_blank\"></a></p>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addImage()
+{
+  text = "<p class=\"article_img\"><img src=\"/image/show_image/\" alt=\"\" uk-tooltip=\"\" /></p>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+</script>

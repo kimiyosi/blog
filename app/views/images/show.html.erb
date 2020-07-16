@@ -23,6 +23,10 @@
     <td><%= @image.name %></td>
   </tr>
   <tr>
+    <th>Path</th>
+    <td>/image/show_image/<%= @image.code %></td>
+  </tr>
+  <tr>
     <th>Image</th>
     <td><%= image_tag(show_image_path(@image.code), {width: "400"}) %></td>
   </tr>

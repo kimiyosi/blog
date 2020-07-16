@@ -16,24 +16,24 @@
 <table class="uk-table uk-table-striped uk-table-middle uk-margin">
   <thead>
     <tr>
+      <th></th>
       <th>Code</th>
       <th>Sub Category</th>
       <th>Image</th>
       <th>Title</th>
       <th>Tag Count</th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @reports.each do |report| %>
       <tr>
+        <td><%= link_to 'Edit', edit_admin_report_path(report) %></td>
         <td><%= report.code %></td>
         <td><%= report.sub_category.name %></td>
         <td><%= image_tag(show_image_path(report.image.code), {width: "100"}) %></td>
-        <td><%= link_to report.title, main_report_path(category_name: report.category.en_name, sub_category_name: report.sub_category.en_name, code: report.code) %></td>
+        <td><%= link_to(report.title, main_report_path(category_name: report.category.en_name, sub_category_name: report.sub_category.en_name, code: report.code), {target: "_blank"}) %></td>
         <td><%= report.tags.count %></td>
-        <td><%= link_to 'Edit', edit_admin_report_path(report) %></td>
       </tr>
     <% end %>
   </tbody>
