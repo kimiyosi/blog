@@ -1,7 +1,7 @@
 require 'csv'
 class ExportImage
   SAVE_PATH = "#{Rails.root}/res/image.csv"
-  HEADER_ROW = ["code", "name", "img"]
+  HEADER_ROW = ["code", "name", "type_code", "img"]
 
   def run
     CSV.open(SAVE_PATH, "w:utf-8"){|f|
@@ -20,6 +20,7 @@ class ExportImage
 
     row << item.code
     row << item.name
+    row << item.type_code
     row << Base64.strict_encode64(item.img)
 
     return row
