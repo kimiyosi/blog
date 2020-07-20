@@ -37,6 +37,8 @@ class ReportsController < ApplicationController
           ReportTag.add(@report.code, tag_codes)
         end
 
+        make_sitemaps
+
         format.html { redirect_to admin_reports_path, notice: 'Report was successfully created.' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -58,6 +60,8 @@ class ReportsController < ApplicationController
         unless tag_codes.blank?
           ReportTag.update_report(@report.code, tag_codes)
         end
+
+        make_sitemaps
 
         format.html { redirect_to admin_reports_path, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
@@ -91,5 +95,9 @@ class ReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit!
+    end
+
+    def make_sitemaps
+      system('rails runner batch/make_sitemap.rb')
     end
 end
