@@ -28,6 +28,7 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new()
     @image.code = params[:image][:code]
+    @image.type_code = params[:image][:type_code]
     @image.name = params[:image][:img_file].original_filename
     @image.img = params[:image][:img_file].read
 

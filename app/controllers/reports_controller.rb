@@ -61,8 +61,6 @@ class ReportsController < ApplicationController
           ReportTag.update_report(@report.code, tag_codes)
         end
 
-        make_sitemaps
-
         format.html { redirect_to admin_reports_path, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
