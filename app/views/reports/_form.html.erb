@@ -63,13 +63,14 @@
   <%= full_error_message_on(:report, :description) %>
 </div>
 
-<div uk-tooltip="Bold" class="uk-button uk-button-default uk-button-small" onclick="addBold();" uk-icon="bold"></div>
-<div uk-tooltip="P" class="uk-button uk-button-default uk-button-small" onclick="addP();" uk-icon="pencil"></div>
 <div uk-tooltip="H3" class="uk-button uk-button-default uk-button-small" onclick="addH3();" uk-icon="tag"></div>
+<div uk-tooltip="P" class="uk-button uk-button-default uk-button-small" onclick="addP();" uk-icon="pencil"></div>
+<div uk-tooltip="Bold" class="uk-button uk-button-default uk-button-small" onclick="addBold();" uk-icon="bold"></div>
 <div uk-tooltip="Code" class="uk-button uk-button-default uk-button-small" onclick="addCode();" uk-icon="google"></div>
 <div uk-tooltip="Table" class="uk-button uk-button-default uk-button-small" onclick="addTable();" uk-icon="table"></div>
 <div uk-tooltip="Link" class="uk-button uk-button-default uk-button-small" onclick="addA();" uk-icon="link"></div>
 <div uk-tooltip="Image" class="uk-button uk-button-default uk-button-small" onclick="addImage();" uk-icon="image"></div>
+<div uk-tooltip="Adsense" class="uk-button uk-button-default uk-button-small" onclick="addAd();" uk-icon="database"></div>
 
 <div class="uk-margin">
   <%= form.label :info %>
@@ -148,6 +149,25 @@ function addA()
 function addImage()
 {
   text = "<p class=\"article_img\"><img src=\"/image/show_image/\" alt=\"\" uk-tooltip=\"\" /></p>"
+
+	area.value = area.value.substr(0, area.selectionStart)
+    + text
+    + area.value.substr(area.selectionStart);
+}
+
+function addAd()
+{
+  text = ""
+  text += "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"><\/script>\n"
+  text += "<ins class=\"adsbygoogle\"\n"
+  text += "     style=\"display:block\"\n"
+  text += "     data-ad-format=\"fluid\"\n"
+  text += "     data-ad-layout-key=\"-4w+cf+1m-el+j5\"\n"
+  text += "     data-ad-client=\"ca-pub-4328470216467775\"\n"
+  text += "     data-ad-slot=\"5276586330\"><\/ins>\n"
+  text += "<script>\n"
+  text += "     (adsbygoogle = window.adsbygoogle || []).push({});\n"
+  text += "<\/script>"
 
 	area.value = area.value.substr(0, area.selectionStart)
     + text
